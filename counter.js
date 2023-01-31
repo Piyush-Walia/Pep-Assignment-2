@@ -1,26 +1,34 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react';
+function CounterControls({ count, setCount }) {
+    const [buttonClass, setButtonClass] = useState("primary");
+    // Decrement Function
+    const DecrementFn = () =>{
+        if(count <= 0){
+            setCount(0)
+            setButtonClass("secondary")   
+        }
+        else{
+            setCount(count - 1)
+            setButtonClass("primary")  
+        }
+    }
 
-export default function Counter() {
-    const [count, setCount] = useState(0);
-   const handleIncrement=()=>{
+    // Increment Function
+    const IncrementFn = () =>{
         setCount(count + 1)
-    }
-    const handleDecrement=()=>{
-        setCount(count - 1)
-
+        setButtonClass("primary")  
     }
 
-  return (
-    <div className='d-flex justify-content-center align-items-center' style={{height:'100vh'}} >
-      <div >
-        <h1 className='text-center fs-20'>Count</h1>
-        <h2 className='text-center fs-5' style={{fontSize:"70px"}}>{count}</h2>
-        <div className='d-flex'>
-        <button type="button"  onClick={handleIncrement} class="btn btn-success me-3">Increment</button>
-        <button type="button" onClick={handleDecrement} class="btn btn-danger ms-3">Decrement</button>
+    return (
+        <div className="counter-controls">
+            <button onClick={DecrementFn} className={buttonClass} style={{}}>Decrement -1</button>  
+            <button onClick={() => setCount(0)} id="resetYellow">Reset</button>
+            <button onClick={IncrementFn}>Increment +1</button>
+            <p className='text my-2'style={{fontSize:"15px"}}>Done by:- Piyush Walia 12018859</p>
+            
         </div>
-        <p className='text my-2'style={{fontSize:"15px"}}>Done by:- Anish 12017020</p>
-      </div>
-    </div>
-  )
+    );
+}
+
+export default CounterControls;
 }
